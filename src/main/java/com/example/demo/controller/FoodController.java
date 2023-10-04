@@ -1,8 +1,6 @@
 package com.example.demo.controller;
 
 import com.example.demo.food.Food;
-import com.example.demo.food.FoodRequestDTO;
-import com.example.demo.food.FoodResponseDTO;
 import com.example.demo.food.FoodRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,16 +15,14 @@ public class FoodController {
     private FoodRepository repository;
 
     @PostMapping
-    public void saveFood(@RequestBody FoodRequestDTO data){
-        Food foodData = new Food(data);
-        repository.save(foodData);
-        return;
+    public void saveFood(@RequestBody Food data){
+        repository.save(data);
     }
 
     @GetMapping
-    public List<FoodResponseDTO> getAll(){
+    public List<Food> getAll(){
 
-        List<FoodResponseDTO> foodList = repository.findAll().stream().map(FoodResponseDTO::new).toList();
+        List<Food> foodList = repository.findAll();
         return foodList;
     }
 }

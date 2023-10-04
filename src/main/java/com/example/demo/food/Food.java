@@ -1,26 +1,18 @@
 package com.example.demo.food;
 
-import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
+
+import javax.persistence.*;
 
 @Table(name = "foods")
 @Entity(name = "foods ")
-@Getter
-@NoArgsConstructor
-@AllArgsConstructor
-@EqualsAndHashCode(of = "id")
+@Data
 public class Food {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
     private String image;
     private Integer price;
-    public Food(FoodRequestDTO data){
-        this.image = data.image();
-        this.price = data.price();
-        this.title = data.title();
-    }
+
 }
