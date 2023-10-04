@@ -24,3 +24,11 @@ jobs:
         run: docker build -t jntcruz/demo .
       - name: Push image docker
         run: docker push jntcruz/demo
+  deploy:
+    needs: build
+    runs-on: self-hosted
+    steps:
+      - name: pull image from docker hub
+        run: docker pull jntcruz/demo:latest
+      - name: Run docker container
+        run: docker run -d -p 8080:8080 --name demo jntcruz/demo
