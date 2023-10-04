@@ -30,5 +30,7 @@ jobs:
     steps:
       - name: pull image from docker hub
         run: sudo docker pull jntcruz/demo:latest
+      - name: Remover docker
+        run: docker rm -f demo
       - name: Run docker container
         run: sudo docker run -d -p 8080:8080 --name demo jntcruz/demo
